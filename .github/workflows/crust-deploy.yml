@@ -1,4 +1,4 @@
-name: Ipfs Deploy
+name: Crust Network Deploy
 on:
   workflow_dispatch:
 
