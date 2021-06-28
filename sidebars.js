@@ -98,7 +98,7 @@ module.exports = {
     {
       type: 'doc',
       id: 'pinningServicesApi',
-      label: 'IPFS Remote Pinning Services API'
+      label: 'IPFS Pinning Service API'
     }
 
   ]
