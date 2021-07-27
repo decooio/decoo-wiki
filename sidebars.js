@@ -41,6 +41,11 @@ module.exports = {
           id: 'general/gettingStarted',
           label: 'Getting Started'
         },
+        {
+          type: 'doc',
+          id: 'general/architecture',
+          label: 'Decoo Architecture'
+        },
         // {
         //   type: 'doc',
         //   id: 'general/apiKeys',
@@ -65,7 +70,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Pinning API',
+      label: 'Endpoint API',
       collapsed: false,
       items: [
         {
@@ -77,12 +82,14 @@ module.exports = {
           type: 'doc',
           id: 'pinning/pinByHash',
           label: 'pinByHash'
-        },
-        // {
-        //   type: 'doc',
-        //   id: 'pinning/pinFromS3',
-        //   label: 'pinFromS3'
-        // },
+        }
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Decoo Cloud API',
+      collapsed: false,
+      items: [
         {
           type: 'doc',
           id: 'pinning/pinJobs',

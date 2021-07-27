@@ -5,11 +5,15 @@ title: ''
 
 Decoo provides a vendor-agnostic [IPFS Pinning Service API](https://ipfs.github.io/pinning-services-api-spec) implementation, which can be used through *ipfs pin remote* command.
 
-## Endpoint
+:::note
+*IPFS Pinning Service API* is deployed in Decoo Cloud. Decoo Cloud automatically chooses an Endpoint for file uploads.
+:::
+
+## URL
 https://api.decoo.io/psa
 
 ## Authentication
-The Pinning Services API Spec uses the Bearer Token method for authentication, you can provide an authentication header using your API Key just like accessing other Decoo APIs:
+The Pinning Services API uses the Bearer Token method for authentication, you can provide an authentication header using your API Key just like accessing other Decoo Cloud APIs:
 ```
 "Authorization": "Bearer <YOUR_API_KEY>"
 ```

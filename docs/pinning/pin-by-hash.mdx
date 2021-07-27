@@ -3,8 +3,16 @@ id: pinByHash
 title: ''
 ---
 
-## Endpoint
-https://api.decoo.io/pinning/pinByHash
+## URL
+
+```
+https://<endpoint-api-host>/pinning/pinByHash
+```
+
+For example, *pinByHash* API URL of Endpoint 'Hong Kong' is:
+```
+https://api-hk.decoo.io/pinning/pinByHash
+```
 
 ## Description
 Asynchronously pin an IPFS content to Decoo cloud by its content identifier. Each API call will generate a *pin job*, which will be picked and processed by a periodically running job. You can query the status of the job using [pinJobs](pinning/pin-jobs.mdx) API.
@@ -19,7 +27,7 @@ POST
 
 ## Headers
 ```
-"Authorization": "Bearer <YOUR_API_KEY>"
+"UserAccessToken": "<YOUR_ACCESS_TOKEN>"
 ```
 
 ## Body
@@ -27,7 +35,8 @@ POST
 The basic request body should be like:
 ```json
 {
-  "hashToPin": "<Hash value of the content to pin>"
+  "hashToPin": "<Hash value of the content to pin>",
+  "secret": "<User's digital signature>"
 }
 ```
 
@@ -49,8 +58,8 @@ Optionally, some metadata could be attached:
 
 ## Curl Example
 ```sh
-curl -X POST "https://api.decoo.io/pinning/pinByHash" \
-  -H "Authorization: Bearer <YOUR_API_KEY>" \
+curl -X POST "https://api-hk.decoo.io/pinning/pinByHash" \
+  -H "UserAccessToken: <YOUR_ACCESS_TOKEN>" \
   -H "Content-Type: application/json" \
-  -d '{"hashToPin": "<HASH_TO_PIIN>", "decooMetadata": {"name": "My File"}}'
+  -d '{"hashToPin": "<HASH_TO_PIIN>", "decooMetadata": {"name": "My File"}, "secret": "<DIGITITAL_SIGNATURE>"}'
 ```

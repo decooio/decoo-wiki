@@ -1,0 +1,22 @@
+---
+id: architecture
+title: ''
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+## Architecture
+
+Decoo architecture can be described as '**One Cloud, Multiple Endpoints**', as illustrated below:
+
+<img alt="Decoo Architecture" width='85%' src={useBaseUrl('/img/decoo_architecture.png')} />
+
+## Decoo Cloud
+
+Decoo's sole account management center, access authorization center and billing center, which is deployed on public cloud, and provides all functionalities except *file upload*.
+
+Business data produced by all *Endpoints* will be synced to *Decoo Cloud*.
+
+## Endpoint
+
+Deployed in IDC data centers, and provides dedicated *file upload* functionality. Decoo will continuously build more and more *Endpoints*. Users could choose *Endpoint* to upload files based on their conditions like geographic position, network connectivity, etc.
