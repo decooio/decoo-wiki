@@ -3,6 +3,9 @@ id: pinningWithApi
 title: ''
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Basics
 
 Decoo provides HTTP API to facilitate Decoo service usage. Under the *[One Cloud, Multiple Endpoints](general/architecture.mdx)* architecture, both *Decoo Cloud* and *Endpoint* are deployed with HTTP API to provide different types of services, with different authentication mechanisms. 
@@ -109,7 +112,52 @@ If you're building client App using JavaScript, a better suggestion is to use [i
 
 #### Generating *Digital Signature*
 
-User could refer to [pinFile](https://github.com/decooio/decoo-sdk/blob/main/packages/sdk/src/pinFile.js) of [Decoo SDK](https://www.npmjs.com/package/@decooio/sdk) about how to generate digital signature using user RSA private key and file CID.
+If using JavaScript, user could refer to [pinFile](https://github.com/decooio/decoo-sdk/blob/main/packages/sdk/src/pinFile.js) of [Decoo SDK](https://www.npmjs.com/package/@decooio/sdk) about how to generate digital signature using user RSA private key and file CID.
+
+For other commonly used programming languages, sample codes are like below:
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java' }
+  ]
+}>
+<TabItem value="java">
+
+```java
+/**
+ <dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.15</version>
+  </dependency>
+ */
+
+import org.apache.commons.codec.binary.Base64;
+import javax.crypto.Cipher;
+import java.security.*;
+import java.security.spec.PKCS8EncodedKeySpec;
+
+public class SecretGeneratorSample {
+    private static final String CHARSET = "UTF-8";
+
+    private static final String RSA_ALGORITHM = "RSA";
+
+    private static final int KEY_SIZE = 1024;
+
+    public static String generateSecret(String cid, String key) throws Exception {
+        PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(key.getBytes(CHARSET)));
+        KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
+        PrivateKey privateKey = keyFactory.generatePrivate(pkcs8KeySpec);
+        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+        return new String(Base64.encodeBase64(cipher.doFinal(cid.getBytes(CHARSET))), CHARSET);
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 ### Accessing API
 

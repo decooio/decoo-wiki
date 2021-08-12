@@ -10,6 +10,9 @@ module.exports = {
   organizationName: 'decooio', // Usually your GitHub org/user name.
   projectName: 'decoo-wiki', // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ['java'],
+    },
     navbar: {
       title: 'wiki',
       logo: {
