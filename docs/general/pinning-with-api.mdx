@@ -119,7 +119,8 @@ For other commonly used programming languages, sample codes are like below:
 <Tabs
   defaultValue="java"
   values={[
-    { label: 'Java', value: 'java' }
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'js' }
   ]
 }>
 <TabItem value="java">
@@ -154,6 +155,28 @@ public class SecretGeneratorSample {
         return new String(Base64.encodeBase64(cipher.doFinal(cid.getBytes(CHARSET))), CHARSET);
     }
 }
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js 
+/*
+ * In the browser, you need to add the following to the package.json
+ *
+ *  "browser": {
+ *   "stream": "readable-stream"
+ *  }
+ */
+
+const crypto = require("public-encrypt")
+
+const privateKey = 'MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKKIIRQcsPqPqqFlKMyq5jbKfjmX2T6uN7AXhgl1sNPM5zgZH+Xwfa6WjJJ8K0wAkQ6IhA2YpDt/4UYUz5nA0CaX/PoJefx0TipiY7Z/iMfK0ZPb4SZwNEdlq7PQITCUy5t5u6X85KgNCEDqkzCk0nmyVn0XD9QORorPJU9cx9w1AgMBAAECgYB4ufUYI1eyRhTQXXu4yxjFihPIY+qSjIYA3vhI/oqiSIlXOhJfkgtJK7qu9FyUz7bvvKeaEc+sAokqrTqnUnlJgHDeeC8dNuxYdppva4MfPEdZBx18jakersTaP9F8w14OeD8RugveFmZ6C1tnDmly7CjruJ3IGJ2YPAaJUGU9AQJBAOVG7amRCa8pHREbLJFSkQpkGvQ/jhlRc5utQPl3U70vlgI7kwsyP9CdeQWxQP5cMn6t3SOBRQU9fWQiml9AevkCQQC1ea7DCojN7eaOD2rPG7HlSfqTHnvMhyHqM5QXhE/A9eqtPMrpzN5xUWjuUd+cnWWW4hgOGHZusLMVcf92Bt4dAkEAyUk73WI33k959UqmFe8m5rh78XLajd+0Xzf7kwfvvGfKiqtCrNGwtLWLSjQTmzvWGOELA+C5d6BENWUrofQ6AQJAHcw6Jupu5ilfBwp/BjzM7BJGo6uItl+l8PfBJE9kbRG0E/f8dYFfMQomCaPF7Mhnauv6+S2JHMnEzgum37Fm/QJAA0oCjZbMngQoIXR67YbAZayuuVxjoSPkAot/aqfwErtVmaLzL1owx3VBVh3uZvM8iVXa5FXsnj/KDAUC50OE2A=='
+const cid = 'QmV3LSMGRVaphRFDF48u1YWWf6aMZEYd1ziuQHQfjyZMpV'
+const fullPrivateKey = `-----BEGIN PRIVATE KEY-----\n${privateKey}\n-----END PRIVATE KEY-----`
+const encrypt_cid = crypto
+  .privateEncrypt(fullPrivateKey, Buffer.from(cid))
+  .toString("base64");
 ```
 
 </TabItem>
